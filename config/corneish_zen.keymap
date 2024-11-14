@@ -9,6 +9,11 @@
   };
 };
 
+&sk {
+        quick-release;
+};
+
+
 / {
         behaviors {
                 bhml: balanced_homerow_mods_left {
@@ -46,9 +51,6 @@
                 };
         };
 
-        &sk {
-                quick-release;
-        };
 
         /*conditional_layers {
                 compatible = "zmk,conditional-layers";
