@@ -102,7 +102,7 @@
                         bindings = <
         &kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &kp F6 &kp F7 &kp F8 &kp F9 &kp F10 &kp F11 &kp F12
         &kp SLCK &kp LCTRL &kp LGUI &kp LALT &kp LSHIFT &sl 3     &kp LEFT &bhmr RSHIFT DOWN &bhmr RALT UP &bhmr RGUI RIGHT &bhmr RCTRL INS &kp DEL
-        &kp C_MUTE  &kp C_VOL_DOWN  &kp C_VOL_UP  &kp C_PP  &kp C_PREV  &kp C_NEXT         &kp HOME  &kp PAGE_DOWN    &kp PAGE_UP      &kp END       &kp PSCRN       &kp PAUSE_BREAK
+        &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP  &kp C_PP  &kp C_PREV  &kp C_NEXT         &kp HOME  &kp PG_DN   &kp PG_UP      &kp END       &kp PSCRN       &kp PAUSE_BREAK
         &trans  &trans       &trans       &trans       &trans       &trans 
                         >;
                 };
