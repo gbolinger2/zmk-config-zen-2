@@ -43,7 +43,7 @@
                         flavor = "balanced";
                         bindings = <&kp>, <&kp>;
                        // hold_while_undecided;       
-                }
+                };
         };
 
         &sk {
