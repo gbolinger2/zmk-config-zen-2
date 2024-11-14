@@ -87,7 +87,8 @@
                         bindings = <
         &kp GRAVE  &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT  &kp CARET  &kp AMPS  &kp ASTRK  &kp LPAR  &kp RPAR  &trans
         &trans  &bhml LCTRL NUMBER_1  &bhml LGUI NUMBER_2  &bhml LALT NUMBER_3  &bhml LSHIFT NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &bhmr RSHIFT NUMBER_7  &bhmr RALT NUMBER_8  &bhmr RGUI NUMBER_9  &bhmr RCTRL NUMBER_0  &trans
-        &trans  &kp EQUAL  &kp LBKT  &kp RBKT  &kp LBRC  &kp RBRC  &kp LT  &kp RT  &trans  &trans  &trans  &trans
+        &trans  &trans       &trans       &trans       &trans       &trans &trans  &trans       &trans       &trans       &trans       &trans
+        //&trans  &kp EQUAL  &kp LBKT  &kp RBKT  &kp LBRC  &kp RBRC  &kp LT  &kp RT  &trans  &trans  &trans  &trans
                         &trans  &trans       &trans       &trans       &trans       &trans
                         >; 
                 };
