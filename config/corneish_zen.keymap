@@ -11,34 +11,52 @@
 
 / {
         behaviors {
-                bhm: balanced_homerow_mods {
+                bhml: balanced_homerow_mods_left {
                         compatible = "zmk,behavior-hold-tap";
                         label = "HOMEROW_MODS";
                         #binding-cells = <2>;
                         tapping-term-ms = <200>;    // <---[[moderate duration]]
-                        quick-tap-ms = <125>;
+                        quick-tap-ms = <200>;
+                        require-prior-idle-ms = <125>;
                         flavor = "balanced";
                         bindings = <&kp>, <&kp>;
-                        retro-tap;
+                        hold-trigger-key-positions = <6 7 8 9 10 11 18 19 20 21 22 23 30 31 32 33 34 35 39 40 41>
                 };
-                gs: gui_special {
+                bhmr: balanced_homerow_mods_right {
                         compatible = "zmk,behavior-hold-tap";
-                        label = "GUI_SPECIAL";
+                        label = "HOMEROW_MODS";
                         #binding-cells = <2>;
                         tapping-term-ms = <200>;    // <---[[moderate duration]]
-                        quick-tap-ms = <125>;
+                        quick-tap-ms = <200>;
+                        require-prior-idle-ms = <125>;
                         flavor = "balanced";
                         bindings = <&kp>, <&kp>;
-                };
+                        hold-trigger-key-positions = <0 1 2 3 4 5 12 13 14 15 16 17 24 25 26 27 28 29 36 37 38>
+                };        
+                cs: control-shift-special {
+                        compatible = "zmk,behavior-hold-tap";
+                        label = "CONTROL_SHIFT_SPECIAL";
+                        #binding-cells = <2>;
+                        tapping-term-ms = <200>;    // <---[[moderate duration]]
+                        quick-tap-ms = <200>;
+                        require-prior-idle-ms = <125>;
+                        flavor = "balanced";
+                        bindings = <&kp>, <&kp>;
+                       // hold_while_undecided;       
+                }
         };
 
-        conditional_layers {
+        &sk {
+                quick-release;
+        }
+
+        /*conditional_layers {
                 compatible = "zmk,conditional-layers";
                 tri_layer {
                         if-layers = <1 2>;
                         then-layer = <3>;
                 };
-        };
+        };*/
 
         keymap {
                 compatible = "zmk,keymap";
@@ -46,32 +64,42 @@
                 default_layer {
                         label = "QWERTY";
 // -----------------------------------------------------------------------------------------
-// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
-// | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
-//                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
+// | CAPS_WORD |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
+// | TAB |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
+// | MINUS |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | \ |
+//                    | ESC | LSHIFT | LWR |   | RSE | SPACE  | ENT |
                         bindings = <
-   &kp ESC  &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-   &kp TAB &bhm LCTRL A &gs LGUI S &bhm LALT D &bhm LSHIFT F &kp G   &kp H &bhm RSHIFT J  &bhm RALT K  &gs RGUI L   &bhm RCTRL SEMI &kp SQT
-   &kp GRAVE &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp BSLH
-                  &to 0 &kp LSHIFT &to 1   &mo 2 &kp SPACE &kp RET
+   &caps_word  &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
+   &kp TAB &bhml LCTRL A &bhml LGUI S &bhml LALT D &bhml LSHIFT F &kp G   &kp H &bhmr RSHIFT J  &bhmr RALT K  &bhmr RGUI L   &bhmr RCTRL SEMI &kp SQT
+   &kp MINUS &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp BSLH
+                  &kp ESC &sk LSHIFT &sl 1   &sl 2 &kp SPACE &kp RET
                         >;
                 };
+// -----------------------------------------------------------------------------------------
+// | GRAVE |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &   |  *  |  (  |  )  | BKSP |
+// | TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7   |  8  |  9  |  0  |  '   |
+// | MINUS |  EQUAL  |  LBKT  |  RBKT  |  LBRC  |  RBRC  |   |  LT  |  GT   |  ,  |  .  |  /  | \ |
+//                    | ESC | LSHIFT | LWR |   | RSE | SPACE  | ENT |
                 lower_layer {
                         label = "SYMBOL";
                         bindings = <
-        &trans    &kp NUMBER_1       &kp NUMBER_2       &kp NUMBER_3       &kp NUMBER_4       &kp NUMBER_5         &kp NUMBER_6   &kp NUMBER_7   &kp NUMBER_8 &kp NUMBER_9    &kp NUMBER_0 &trans
-        &trans  &trans       &trans       &trans       &trans       &trans         &kp MINUS  &bhm RSHIFT PLUS   &bhm RALT LEFT_BRACKET &gs RGUI RIGHT_BRACKET    &trans &trans
-        &trans  &trans       &trans       &trans       &trans       &trans         &trans  &trans       &trans       &trans       &trans       &trans
+        kp& GRAVE  kp& EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT  &kp CARET  &kp AMPS  &kp ASTRK  &kp LPAR  &kp RPAR  &trans
+        &trans  &bhml LCTRL NUMBER_1  &bhml LGUI NUMBER_2  &bhml LALT NUMBER_3  &bhml LSHIFT NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &bhmr RSHIFT NUMBER_7  &bhmr RALT NUMBER_8  &bhmr RGUI NUMBER_9  &bhmr RCTRL NUMBER_0  &trans
+        &trans  &kp EQUAL  &kp LBKT  &kp RBKT  &kp LBRC  &kp RBRC  &kp LT  &kp RT  &trans  &trans  &trans  &trans
                         &trans  &trans       &trans       &trans       &trans       &trans
                         >; 
                 };
+// -----------------------------------------------------------------------------------------
+// | F1 |  F2  |  F3  |  F4  |  F5  |  F6  |   |  F7  |  F8   |  F9  |  F10  |  F11  | F12 |
+// | SLCK |  LCTRL  |  LGUI  |  LALT  |  LSHIFT  |  SL 3  |   |  LEFT  |  DOWN   |  UP  |  RIGHT  |  INS  |  DEL  |
+// | C_MUTE |  C_VOL_DOWN  |  C_VOL_UP  |  C_PP  |  C_PREV  |  C_NEXT  |   |  HOME  |  PG_DN   |  PG_UP  |  END  |  PSCRN  | PAUSE_BREAK |
+//                    | ESC | LSHIFT | LWR |   | RSE | SPACE  | ENT |
                 raise_layer {
                         label = "FUNCTION";
                         bindings = <
-        &trans &kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &kp F6 &kp F7 &kp F8 &kp F9 &kp F10 &trans
-        &trans &bhm LCTRL F11 &gs LGUI F12 &trans &trans &trans     &kp LEFT &bhm RSHIFT DOWN &bhm RALT UP &gs RGUI RIGHT &bhm RCTRL INS &kp DEL
-        &trans  &trans       &trans       &trans       &trans       &trans         &kp HOME  &kp PAGE_DOWN    &kp PAGE_UP      &kp END       &trans       &trans
+        &kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &kp F6 &kp F7 &kp F8 &kp F9 &kp F10 &kp F11 &kp F12
+        &kp SLCK &kp LCTRL &kp LGUI &kp LALT &kp LSHIFT &sl 3     &kp LEFT &kp DOWN &kp UP &kp RIGHT &kp INS &kp DEL
+        &kp C_MUTE  &kp C_VOL_DOWN  &kp C_VOL_UP  &kp C_PP  &kp C_PREV  &C_NEXT         &kp HOME  &kp PAGE_DOWN    &kp PAGE_UP      &kp END       &kp PSCRN       &kp PAUSE_BREAK
         &trans  &trans       &trans       &trans       &trans       &trans 
                         >;
                 };
@@ -79,13 +107,13 @@
                         label = "CONFIG";
 // -----------------------------------------------------------------------------------------
 // |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
-// | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
-// | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
+// | TAB | BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
+// | BTCLR |     |     |     |     |     |   |     |     |     |     |     |      |
 //                    | GUI |     | SPC |   | ENT |     | ALT |
                         bindings = <
    &kp TAB    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp BSPC
-   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
-   &kp LSHFT  &trans       &trans       &trans       &trans       &trans         &trans   &trans   &trans &trans    &trans &trans
+   &trans &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
+   &bt BRCLR  &trans       &trans       &trans       &trans       &trans         &trans   &trans   &trans &trans    &trans &trans
                           	        &trans  &trans       &trans       &trans       &trans       &trans 
                         >;
                 };
