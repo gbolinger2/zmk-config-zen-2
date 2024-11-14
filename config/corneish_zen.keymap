@@ -20,7 +20,7 @@
                         require-prior-idle-ms = <125>;
                         flavor = "balanced";
                         bindings = <&kp>, <&kp>;
-                        hold-trigger-key-positions = <6 7 8 9 10 11 18 19 20 21 22 23 30 31 32 33 34 35 39 40 41>
+                        hold-trigger-key-positions = <6 7 8 9 10 11 18 19 20 21 22 23 30 31 32 33 34 35 39 40 41>;
                 };
                 bhmr: balanced_homerow_mods_right {
                         compatible = "zmk,behavior-hold-tap";
@@ -31,7 +31,7 @@
                         require-prior-idle-ms = <125>;
                         flavor = "balanced";
                         bindings = <&kp>, <&kp>;
-                        hold-trigger-key-positions = <0 1 2 3 4 5 12 13 14 15 16 17 24 25 26 27 28 29 36 37 38>
+                        hold-trigger-key-positions = <0 1 2 3 4 5 12 13 14 15 16 17 24 25 26 27 28 29 36 37 38>;
                 };        
                 cs: control-shift-special {
                         compatible = "zmk,behavior-hold-tap";
@@ -48,7 +48,7 @@
 
         &sk {
                 quick-release;
-        }
+        };
 
         /*conditional_layers {
                 compatible = "zmk,conditional-layers";
@@ -98,7 +98,7 @@
                         label = "FUNCTION";
                         bindings = <
         &kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &kp F6 &kp F7 &kp F8 &kp F9 &kp F10 &kp F11 &kp F12
-        &kp SLCK &kp LCTRL &kp LGUI &kp LALT &kp LSHIFT &sl 3     &kp LEFT &kp DOWN &kp UP &kp RIGHT &kp INS &kp DEL
+        &kp SLCK &kp LCTRL &kp LGUI &kp LALT &kp LSHIFT &sl 3     &kp LEFT &bhmr RSHIFT DOWN &bhmr RALT UP &bhmr RGUI RIGHT &bhmr RCTRL INS &kp DEL
         &kp C_MUTE  &kp C_VOL_DOWN  &kp C_VOL_UP  &kp C_PP  &kp C_PREV  &C_NEXT         &kp HOME  &kp PAGE_DOWN    &kp PAGE_UP      &kp END       &kp PSCRN       &kp PAUSE_BREAK
         &trans  &trans       &trans       &trans       &trans       &trans 
                         >;
